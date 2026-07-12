@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useMemo, useState } from "react";
 
 const navItems = [
@@ -70,7 +68,7 @@ function DoodleField() {
       Array.from({ length: 18 }, (_, index) => ({
         left: `${(index * 37 + 8) % 88}%`,
         top: `${(index * 53 + 14) % 78}%`,
-        delay: `${(index % 5) * 0.18}s`,
+        animationDelay: `${(index % 5) * 0.18}s`,
       })),
     []
   );
@@ -90,7 +88,7 @@ function DoodleField() {
   );
 }
 
-export default function Home() {
+export default function App() {
   const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {

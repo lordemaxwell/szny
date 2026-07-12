@@ -1,24 +1,19 @@
 {
-  "name": "still-becoming-personal-site",
+  "name": "personal-site",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vinext dev",
-    "build": "vinext build",
-    "postbuild": "node scripts/package-sites.mjs",
-    "start": "vinext start",
-    "lint": "vinext lint"
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {
     "react": "19.2.7",
-    "react-dom": "19.2.7",
-    "react-server-dom-webpack": "19.2.7"
+    "react-dom": "19.2.7"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "6.0.3",
-    "@vitejs/plugin-rsc": "0.5.27",
-    "vinext": "1.0.0-beta.1",
     "vite": "8.1.4"
   },
   "overrides": {

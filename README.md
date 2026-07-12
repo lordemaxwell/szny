@@ -1,6 +1,6 @@
 # Personal Website v0
 
-这是一个公开版个人网站草稿，当前重点是确认信息边界和视觉方向。
+这是一个公开版个人网站草稿，当前重点是确认信息边界和视觉方向。项目已改为标准 Vite 静态站，可部署到 GitHub Pages 或 Netlify。
 
 ## 内容原则
 
@@ -11,14 +11,14 @@
 
 ## 替换位置
 
-主要内容在 `app/page.js`：
+主要内容在 `src/App.jsx`：
 
 - `profileFacts`：公开身份字段。
 - `works`：作品或项目占位。
 - `publicSections`：公开经历、能力、奖项或证书。
 - `YOUR_EMAIL@example.com`、GitHub、LinkedIn：联系方式。
 
-全局视觉系统在 `app/globals.css`。
+全局视觉系统在 `src/styles.css`。
 
 ## 本地运行
 
@@ -27,10 +27,23 @@ npm install
 npm run dev
 ```
 
-构建：
+## 构建
 
 ```bash
 npm run build
 ```
 
-`npm run build` 使用 vinext 生成 Sites 可部署的 `dist/server/index.js`，并复制 `.openai/hosting.json` 到 `dist/.openai/hosting.json`。
+构建产物在 `dist/`。
+
+## GitHub Pages
+
+仓库推到 GitHub 后，`.github/workflows/deploy.yml` 会在 `main` 分支 push 后自动构建并部署到 GitHub Pages。
+
+如果 Pages 没自动开启，在 GitHub 仓库里进入 `Settings -> Pages`，把 `Source` 设为 `GitHub Actions`。
+
+## Netlify
+
+Netlify 连接同一个 GitHub 仓库即可，配置会自动读取 `netlify.toml`：
+
+- Build command: `npm run build`
+- Publish directory: `dist`
