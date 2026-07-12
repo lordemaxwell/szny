@@ -19,3 +19,5 @@
 npm install
 npm run dev
 ```
+
+`npm run build` 会生成 Sites 可部署的静态制品目录 `dist/`。
