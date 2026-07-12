@@ -1,0 +1,8 @@
+node_modules/
+.next/
+.playwright-cli/
+output/playwright/daemon/
+output/playwright/profile/
+output/playwright/temp/
+output/playwright/*.png
+npm-debug.log*
