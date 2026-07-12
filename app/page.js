@@ -2,237 +2,215 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-const prompts = [
-  "什么事情即使没人催，我也愿意一直做下去？",
-  "如果不怕做得不够好，我今晚会开始什么？",
-  "五年后的我，会感谢现在的我保留了什么？",
-  "我想成为一个怎样可靠、又有趣的大人？",
+const navItems = [
+  ["home", "Home"],
+  ["about", "About"],
+  ["works", "Works"],
+  ["profile", "Profile"],
+  ["contact", "Contact"],
 ];
 
-const drawers = [
+const profileFacts = [
+  ["Name", "[你的中文名 / English Name]"],
+  ["Role", "[公开身份描述，例如：产品 / 研究 / 设计 / 数据]"],
+  ["Base", "[城市，可不填]"],
+  ["Education", "[学校 / 专业 / 学位，可按公开程度填写]"],
+  ["Focus", "[3 个公开方向，用逗号分隔]"],
+];
+
+const works = [
   {
-    number: "01",
-    title: "关于思考",
-    label: "正在建立自己的坐标系",
-    text: "我喜欢把模糊的问题拆开，寻找它真正卡住的地方。比起快速拥有答案，我更在意问题是否值得追下去。",
+    type: "Project 01",
+    title: "[项目标题]",
+    meta: "[类型 / 时间 / 状态]",
+    copy: "[一句话说明它解决了什么问题，避免自夸]",
+    palette: "yellow",
   },
   {
-    number: "02",
-    title: "关于制作",
-    label: "把想法做成看得见的东西",
-    text: "文字、网页、影像或一个小工具都可以。作品未必要宏大，它首先应该诚实，然后比昨天多解决一点问题。",
+    type: "Project 02",
+    title: "[课程或研究项目]",
+    meta: "[课程 / 研究 / 小组 / 个人]",
+    copy: "[你的职责、方法或产出，可留空]",
+    palette: "blue",
   },
   {
-    number: "03",
-    title: "关于生活",
-    label: "认真收集不起眼的瞬间",
-    text: "散步时听到的对话、一本书里折起的页角、凌晨突然想通的事——它们构成了我理解世界的隐秘索引。",
+    type: "Project 03",
+    title: "[公开实验]",
+    meta: "[prototype / essay / tool]",
+    copy: "[一个可以被别人看懂的公开尝试]",
+    palette: "green",
+  },
+  {
+    type: "Project 04",
+    title: "[未来项目占位]",
+    meta: "[coming soon]",
+    copy: "[还没准备好时，就保持占位，不编故事]",
+    palette: "ink",
   },
 ];
 
-function StarField() {
-  const stars = useMemo(
-    () => Array.from({ length: 22 }, (_, i) => ({
-      left: `${(i * 43 + 11) % 97}%`,
-      top: `${(i * 67 + 7) % 92}%`,
-      delay: `${(i % 7) * 0.45}s`,
-      size: `${i % 4 === 0 ? 3 : 2}px`,
-    })),
+const publicSections = [
+  {
+    title: "Experience",
+    items: ["[教育经历]", "[实习 / 工作经历]", "[公开活动 / 组织经历]"],
+  },
+  {
+    title: "Capabilities",
+    items: ["[能力关键词 01]", "[能力关键词 02]", "[能力关键词 03]"],
+  },
+  {
+    title: "Recognition",
+    items: ["[奖项 / 证书 / 发表，可删除]", "[没有就不放]", "[只保留能被验证的内容]"],
+  },
+];
+
+function DoodleField() {
+  const dots = useMemo(
+    () =>
+      Array.from({ length: 18 }, (_, index) => ({
+        left: `${(index * 37 + 8) % 88}%`,
+        top: `${(index * 53 + 14) % 78}%`,
+        delay: `${(index % 5) * 0.18}s`,
+      })),
     []
   );
 
   return (
-    <div className="stars" aria-hidden="true">
-      {stars.map((star, index) => (
-        <i key={index} style={{ ...star, width: star.size, height: star.size }} />
-      ))}
+    <div className="doodle-field" aria-label="原创视觉资产占位">
+      <div className="doodle-paper">
+        <span className="doodle-label">[原创头像 / 签名图形]</span>
+        <div className="doodle-line one" />
+        <div className="doodle-line two" />
+        <div className="doodle-line three" />
+        {dots.map((dot, index) => (
+          <i key={index} style={dot} />
+        ))}
+      </div>
     </div>
   );
 }
 
 export default function Home() {
-  const [night, setNight] = useState(false);
-  const [quiet, setQuiet] = useState(false);
-  const [promptIndex, setPromptIndex] = useState(0);
-  const [note, setNote] = useState("");
-  const [savedNote, setSavedNote] = useState("");
-  const [tweaksOpen, setTweaksOpen] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
-    setNight(new Date().getHours() >= 18 || new Date().getHours() < 6);
-    setSavedNote(window.localStorage.getItem("future-note") || "");
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = night ? "night" : "day";
-    document.documentElement.dataset.motion = quiet ? "quiet" : "full";
-  }, [night, quiet]);
-
-  function saveNote(event) {
-    event.preventDefault();
-    const clean = note.trim();
-    if (!clean) return;
-    window.localStorage.setItem("future-note", clean);
-    setSavedNote(clean);
-    setNote("");
-  }
+    document.documentElement.dataset.nav = navOpen ? "open" : "closed";
+  }, [navOpen]);
 
   return (
-    <main>
-      <StarField />
-      <div className="cursor-glow" aria-hidden="true" />
-
-      <nav className="nav" aria-label="主导航">
-        <a className="wordmark" href="#top" aria-label="返回顶部">
-          <span className="mark" />
-          STILL BECOMING
+    <main className="site-shell">
+      <aside className="side-rail" aria-label="站点导航">
+        <a className="brand" href="#home" onClick={() => setNavOpen(false)}>
+          <span className="brand-mark" />
+          <span>[Name]</span>
         </a>
-        <div className="nav-links">
-          <a href="#now">此刻</a>
-          <a href="#drawers">抽屉</a>
-          <a href="#hello">联系</a>
-        </div>
-        <button className="theme-button" onClick={() => setNight((value) => !value)}>
-          {night ? "开灯" : "入夜"}
+        <button className="menu-toggle" type="button" onClick={() => setNavOpen((value) => !value)}>
+          {navOpen ? "Close" : "Menu"}
         </button>
-      </nav>
+        <nav className="nav-list">
+          {navItems.map(([href, label]) => (
+            <a key={href} href={`#${href}`} onClick={() => setNavOpen(false)}>
+              {label}
+            </a>
+          ))}
+        </nav>
+        <p className="rail-note">Public site v0</p>
+      </aside>
 
-      <header className="hero" id="top">
-        <div className="eyebrow reveal">2026 · A NEW GRADUATE</div>
-        <h1 className="reveal delay-one">
-          你好，我刚毕业<span className="punctuation">。</span>
-        </h1>
-        <div className="hero-bottom reveal delay-two">
-          <p className="hero-copy">
-            简历还不长，<br />
-            人生刚刚开始变得具体。
-          </p>
-          <div className="identity-ticket" aria-label="待填写的个人信息">
-            <div className="ticket-top">
-              <span>IDENTITY / 001</span>
-              <span className="live-dot">LIVE</span>
-            </div>
-            <strong>你的名字</strong>
-            <p>毕业于「你的学校 · 你的专业」</p>
-            <small>这里暂时空着，等真实的你来填写。</small>
+      <section className="hero-section" id="home">
+        <div className="hero-copy">
+          <p className="kicker">Personal Website / Public Version</p>
+          <h1>[你的名字]</h1>
+          <p className="standfirst">[一句公开定位：你正在做什么、关心什么、希望别人如何认识你]</p>
+          <div className="hero-actions">
+            <a href="#works">View Works</a>
+            <a href="#contact">Contact</a>
           </div>
         </div>
-        <div className="scroll-cue" aria-hidden="true"><span />继续往下</div>
-      </header>
+        <DoodleField />
+        <p className="privacy-line">这个版本只放公开信息：作品、经历、能力、联系方式。其余内容默认不进入主页。</p>
+      </section>
 
-      <section className="manifesto" id="now">
-        <p className="section-label">此刻 / NOW</p>
-        <p className="manifesto-text">
-          我现在没有一长串奖项，也没有一个已经讲得很圆满的故事。
-          我有的是<strong>刚刚展开的时间</strong>，还没被磨平的好奇心，
-          以及把小事做好的耐心。
-        </p>
-        <div className="status-strip" role="list" aria-label="当前状态">
-          <span role="listitem">刚从大学毕业</span>
-          <span role="listitem">正在寻找长期方向</span>
-          <span role="listitem">对未知保持开放</span>
+      <section className="content-section about-grid" id="about">
+        <div>
+          <p className="kicker">About</p>
+          <h2>公开介绍，不写人设。</h2>
+        </div>
+        <div className="about-copy">
+          <p>[第一段：你希望别人如何理解你的专业方向或兴趣方向。建议 80 字以内。]</p>
+          <p>[第二段：你正在寻找的机会、合作或长期方向。建议 60 字以内。]</p>
+          <ul className="fact-list">
+            {profileFacts.map(([label, value]) => (
+              <li key={label}>
+                <span>{label}</span>
+                <strong>{value}</strong>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      <section className="drawers-section" id="drawers">
-        <div className="section-heading">
-          <div>
-            <p className="section-label">三个抽屉 / THREE DRAWERS</p>
-            <h2>现在值得<br />认真对待的事</h2>
-          </div>
-          <p>它们还算不上“成果”，更像是我愿意持续靠近的方向。</p>
+      <section className="content-section works-section" id="works">
+        <div className="section-head">
+          <p className="kicker">Works</p>
+          <h2>作品区可以先空着，但结构要完整。</h2>
+          <p>每个项目只需要说清楚：背景、你做了什么、结果或下一步。没有成果时，用过程型项目或公开实验占位。</p>
         </div>
-        <div className="drawers">
-          {drawers.map((drawer) => (
-            <article className="drawer" key={drawer.number} tabIndex="0">
-              <div className="drawer-number">{drawer.number}</div>
-              <div className="drawer-main">
-                <p>{drawer.label}</p>
-                <h3>{drawer.title}</h3>
+        <div className="work-grid">
+          {works.map((work) => (
+            <article className={`work-card ${work.palette}`} key={work.type}>
+              <div className="work-image">
+                <span>[4:3 项目图]</span>
               </div>
-              <p className="drawer-detail">{drawer.text}</p>
-              <span className="drawer-action" aria-hidden="true">展开阅读 ↗</span>
+              <div className="work-meta">
+                <span>{work.type}</span>
+                <span>{work.meta}</span>
+              </div>
+              <h3>{work.title}</h3>
+              <p>{work.copy}</p>
+              <a href="#contact">Details later</a>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="question-room" aria-labelledby="question-title">
-        <div className="question-index">Q / {String(promptIndex + 1).padStart(2, "0")}</div>
-        <p className="section-label">最近在想 / A QUESTION TO KEEP</p>
-        <h2 id="question-title">{prompts[promptIndex]}</h2>
-        <button
-          className="next-question"
-          onClick={() => setPromptIndex((value) => (value + 1) % prompts.length)}
-        >
-          换一个问题 <span>→</span>
-        </button>
-      </section>
-
-      <section className="note-section" id="hello">
-        <div className="note-intro">
-          <p className="section-label">给未来 / A SMALL TIME CAPSULE</p>
-          <h2>留一句话，<br />给一年后的自己。</h2>
-          <p>它只会保存在你现在使用的浏览器里。没有账号，也不会被发送到任何地方。</p>
+      <section className="profile-band" id="profile">
+        <div className="profile-title">
+          <p className="kicker">Profile</p>
+          <h2>只放可被公开验证的信息。</h2>
         </div>
-        <div className="note-card">
-          {savedNote ? (
-            <div className="saved-note" aria-live="polite">
-              <p>“{savedNote}”</p>
-              <small>留于今天 · 等未来重读</small>
-              <button onClick={() => { window.localStorage.removeItem("future-note"); setSavedNote(""); }}>
-                重新写一句
-              </button>
-            </div>
-          ) : (
-            <form onSubmit={saveNote}>
-              <label htmlFor="future-note">亲爱的一年后的我：</label>
-              <textarea
-                id="future-note"
-                value={note}
-                maxLength={120}
-                onChange={(event) => setNote(event.target.value)}
-                placeholder="希望那时的你，仍然……"
-              />
-              <div className="form-bottom">
-                <span>{note.length} / 120</span>
-                <button type="submit" disabled={!note.trim()}>封存这句话</button>
-              </div>
-            </form>
-          )}
+        <div className="profile-columns">
+          {publicSections.map((section) => (
+            <article key={section.title}>
+              <h3>{section.title}</h3>
+              <ul>
+                {section.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
         </div>
       </section>
 
-      <footer>
-        <div>
-          <p className="section-label">保持联系 / SAY HELLO</p>
-          <a className="email" href="mailto:YOUR_EMAIL@example.com">YOUR_EMAIL@example.com</a>
+      <section className="contact-section" id="contact">
+        <p className="kicker">Contact</p>
+        <h2>让别人知道如何找到你。</h2>
+        <div className="contact-grid">
+          <a href="mailto:YOUR_EMAIL@example.com">
+            <span>Email</span>
+            <strong>YOUR_EMAIL@example.com</strong>
+          </a>
+          <a href="https://github.com/" target="_blank" rel="noreferrer">
+            <span>GitHub</span>
+            <strong>[github 用户名]</strong>
+          </a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+            <span>LinkedIn / Portfolio</span>
+            <strong>[公开链接，可删除]</strong>
+          </a>
         </div>
-        <div className="footer-meta">
-          <p>你的城市 · CHINA</p>
-          <p>DESIGNED WHILE BECOMING</p>
-        </div>
-        <p className="footer-line">没有完成的人生，也值得拥有一个漂亮的首页。</p>
-      </footer>
-
-      <div className={`tweaks ${tweaksOpen ? "open" : ""}`}>
-        {tweaksOpen && (
-          <div className="tweaks-panel">
-            <strong>Tweaks</strong>
-            <label>
-              <span>夜间气氛</span>
-              <input type="checkbox" checked={night} onChange={() => setNight((value) => !value)} />
-            </label>
-            <label>
-              <span>安静模式</span>
-              <input type="checkbox" checked={quiet} onChange={() => setQuiet((value) => !value)} />
-            </label>
-          </div>
-        )}
-        <button className="tweaks-toggle" onClick={() => setTweaksOpen((value) => !value)} aria-expanded={tweaksOpen}>
-          {tweaksOpen ? "关闭" : "Tweak"}
-        </button>
-      </div>
+      </section>
     </main>
   );
 }

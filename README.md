@@ -1,17 +1,24 @@
-# 正在成为 / Still Becoming
+# Personal Website v0
 
-一个为刚毕业、仍在寻找方向的人设计的个人网站。网站有意避免虚构项目与奖项，把“正在成长”本身作为叙事核心。
+这是一个公开版个人网站草稿，当前重点是确认信息边界和视觉方向。
 
-## 替换个人信息
+## 内容原则
 
-在 `app/page.js` 中搜索以下文本并替换：
+- 只放公开信息：个人公开介绍、作品、经历、能力、联系方式。
+- 不放私密内容：学习笔记、阅读记录、电影音乐、旅行照片、随手想法、最近在做。
+- 没有确认的内容全部保留为 `[待填写]` 占位，不编文案。
+- “毕业”只作为可选时间节点，不作为主页身份叙事。
 
-- `你的名字`
-- `你的学校 · 你的专业`
-- `YOUR_EMAIL@example.com`
-- `你的城市`
+## 替换位置
 
-三个“抽屉”的内容位于文件顶部的 `drawers` 数组，可直接修改。
+主要内容在 `app/page.js`：
+
+- `profileFacts`：公开身份字段。
+- `works`：作品或项目占位。
+- `publicSections`：公开经历、能力、奖项或证书。
+- `YOUR_EMAIL@example.com`、GitHub、LinkedIn：联系方式。
+
+全局视觉系统在 `app/globals.css`。
 
 ## 本地运行
 
@@ -20,4 +27,10 @@ npm install
 npm run dev
 ```
 
-`npm run build` 会生成 Sites 可部署的静态制品目录 `dist/`。
+构建：
+
+```bash
+npm run build
+```
+
+`npm run build` 使用 vinext 生成 Sites 可部署的 `dist/server/index.js`，并复制 `.openai/hosting.json` 到 `dist/.openai/hosting.json`。
