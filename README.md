@@ -28,7 +28,9 @@
 - `copy.zh.profile.sections` / `copy.en.profile.sections`：公开经历、能力、奖项或证书。
 - `YOUR_EMAIL@example.com`、GitHub、LinkedIn：联系方式。
 
-路由配置在 `src/App.jsx`，共享导航在 `src/components/SiteLayout.jsx`，五个独立页面组件在 `src/pages/`，全局视觉系统在 `src/styles.css`。
+路由配置在 `src/App.jsx`，共享布局和导航分别在 `src/components/SiteLayout.jsx`、`src/components/Navigation.jsx`，五个独立页面组件在 `src/pages/`，全局视觉系统在 `src/styles.css`。
+
+原创临时线稿位于 `src/assets/doodles/`。这些 SVG 都是透明背景的单线条占位资源，可以直接替换为同名 SVG，或修改页面组件中的 import 指向自己的 SVG / PNG。
 
 ## 本地运行
 
@@ -47,9 +49,9 @@ npm run build
 
 ## GitHub Pages
 
-仓库推到 GitHub 后，`.github/workflows/deploy.yml` 会在 `main` 分支 push 后自动构建，并把 `dist/` 发布到 `gh-pages` 分支。
+仓库推到 GitHub 后，`.github/workflows/deploy.yml` 会在 `main` 分支 push 后自动构建，上传 `dist/` artifact，并通过 GitHub 官方 `actions/deploy-pages` 发布。
 
-GitHub 仓库 `Settings -> Pages` 中应保持 `Deploy from a branch`，分支选择 `gh-pages`，目录选择 `/ (root)`。
+GitHub 仓库 `Settings -> Pages` 的 Source 应设为 `GitHub Actions`。当前仓库已经是 `workflow` 发布模式，不需要再使用 `gh-pages` 分支作为发布源。
 
 `vite.config.js` 使用相对资源基址 `base: "./"`，因此站点部署在 `lordemaxwell.github.io/szny/` 这样的仓库子目录时，CSS 和 JavaScript 资源仍可正常加载。Hash 路由也允许直接刷新任意页面而不触发 GitHub Pages 404。
 

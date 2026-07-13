@@ -6,9 +6,14 @@ export default function ContactPage() {
 
   return (
     <section className="page page-contact" aria-labelledby="contact-title">
-      <p className="kicker">{text.kicker}</p>
-      <h2 id="contact-title">{text.title}</h2>
-      <div className="contact-grid">
+      <header className="page-header contact-header">
+        <div>
+          <p className="kicker">{text.kicker}</p>
+          <h1 id="contact-title">{text.title}</h1>
+        </div>
+      </header>
+
+      <div className="contact-list">
         {text.links.map(([label, value, href]) => (
           <a
             key={label}
@@ -18,6 +23,7 @@ export default function ContactPage() {
           >
             <span>{label}</span>
             <strong>{value}</strong>
+            <i aria-hidden="true">↗</i>
           </a>
         ))}
       </div>
