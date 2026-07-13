@@ -2,6 +2,8 @@
 
 这是一个公开版个人网站草稿，当前重点是确认信息边界和视觉方向。项目已改为标准 Vite 静态站，可部署到 GitHub Pages 或 Netlify。
 
+当前交互是点击式页面切换，不再把所有栏目长滚动排列在同一页。左侧导航会切换 Home / About / Works / Profile / Contact，页面支持中英文切换。
+
 ## 内容原则
 
 - 只放公开信息：个人公开介绍、作品、经历、能力、联系方式。
@@ -13,9 +15,9 @@
 
 主要内容在 `src/App.jsx`：
 
-- `profileFacts`：公开身份字段。
-- `works`：作品或项目占位。
-- `publicSections`：公开经历、能力、奖项或证书。
+- `copy.zh.about.facts` / `copy.en.about.facts`：公开身份字段。
+- `copy.zh.works.items` / `copy.en.works.items`：作品或项目占位。
+- `copy.zh.profile.sections` / `copy.en.profile.sections`：公开经历、能力、奖项或证书。
 - `YOUR_EMAIL@example.com`、GitHub、LinkedIn：联系方式。
 
 全局视觉系统在 `src/styles.css`。

@@ -21,7 +21,6 @@
 
 html {
   background: var(--paper);
-  scroll-behavior: smooth;
 }
 
 body {
@@ -45,6 +44,10 @@ a {
 
 button {
   font: inherit;
+}
+
+button {
+  cursor: pointer;
 }
 
 a {
@@ -79,10 +82,13 @@ a {
   align-items: center;
   gap: 12px;
   width: fit-content;
+  padding: 0;
+  border: 0;
+  background: transparent;
   font-family: var(--display);
   font-size: 25px;
   line-height: 1;
-  text-decoration: none;
+  text-align: left;
 }
 
 .brand-mark {
@@ -94,56 +100,126 @@ a {
   transform: rotate(-10deg);
 }
 
-.menu-toggle {
+.mobile-actions {
   display: none;
 }
 
 .nav-list {
   display: grid;
-  gap: 18px;
+  gap: 12px;
   margin-top: 84px;
-  font-family: var(--mono);
-  font-size: 12px;
 }
 
-.nav-list a {
-  width: fit-content;
-  text-decoration: none;
+.nav-list button {
+  display: grid;
+  gap: 2px;
+  width: 100%;
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: transparent;
   color: var(--muted);
-  transition: color 180ms ease, transform 180ms ease;
+  text-align: left;
+  transition: color 180ms ease, transform 180ms ease, border-color 180ms ease;
 }
 
-.nav-list a:hover,
-.nav-list a:focus-visible {
+.nav-list button span {
+  font-family: var(--display);
+  font-size: 21px;
+  line-height: 1.1;
+}
+
+.nav-list button small {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.nav-list button:hover,
+.nav-list button:focus-visible,
+.nav-list button.active {
   color: var(--ink);
-  transform: translateX(5px);
+  border-color: var(--ink);
   outline: none;
+  transform: translateX(5px);
 }
 
-.rail-note {
+.rail-lang {
   margin: auto 0 0;
+  padding: 13px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+}
+
+.rail-lang span,
+.rail-lang strong,
+.rail-note {
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0;
+}
+
+.rail-lang strong {
+  display: grid;
+  place-items: center;
+  min-width: 32px;
+  min-height: 32px;
+  border: 1px solid var(--ink);
+  background: var(--accent);
+}
+
+.rail-note {
+  margin: 16px 0 0;
   color: var(--muted);
 }
 
-.hero-section,
-.content-section,
-.profile-band,
-.contact-section {
-  position: relative;
-  margin: 0 auto;
-  width: min(100%, 1280px);
+.page-stage {
+  min-height: 100vh;
+  animation: page-enter 420ms var(--ease) both;
 }
 
-.hero-section {
+.page {
+  position: relative;
+  width: min(100%, 1280px);
   min-height: 100vh;
+  margin: 0 auto;
+  padding: 80px clamp(36px, 6vw, 92px) 96px;
+}
+
+.page-home {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(360px, 520px);
   gap: clamp(52px, 7vw, 110px);
   align-items: center;
-  padding: 80px clamp(36px, 6vw, 92px) 96px;
+}
+
+.page-split,
+.page-profile {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1fr);
+  gap: clamp(56px, 8vw, 120px);
+  align-items: start;
+}
+
+.page-profile {
+  width: 100%;
+  max-width: none;
+  padding-inline: max(36px, calc((100vw - 1280px) / 2 + 92px));
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.page-contact,
+.page-works {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero-copy {
@@ -156,6 +232,11 @@ a {
   font-size: 11px;
   color: var(--muted);
   text-transform: uppercase;
+}
+
+.page-profile .kicker,
+.profile-columns li {
+  color: color-mix(in srgb, var(--paper) 68%, transparent);
 }
 
 h1,
@@ -173,6 +254,14 @@ h1 {
   line-height: 0.92;
 }
 
+h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(48px, 6vw, 86px);
+  font-weight: 400;
+  line-height: 1.08;
+}
+
 .standfirst {
   max-width: 560px;
   margin: 42px 0 0;
@@ -188,27 +277,30 @@ h1 {
   flex-wrap: wrap;
 }
 
-.hero-actions a {
+.hero-actions button,
+.work-card button {
   min-height: 44px;
   display: inline-flex;
   align-items: center;
+  width: fit-content;
   padding: 10px 16px;
   border: 1px solid var(--ink);
   background: var(--ink);
   color: var(--paper);
   font-family: var(--mono);
   font-size: 12px;
-  text-decoration: none;
   transition: transform 180ms ease, background 180ms ease, color 180ms ease;
 }
 
-.hero-actions a + a {
+.hero-actions button.ghost {
   background: transparent;
   color: var(--ink);
 }
 
-.hero-actions a:hover,
-.hero-actions a:focus-visible {
+.hero-actions button:hover,
+.hero-actions button:focus-visible,
+.work-card button:hover,
+.work-card button:focus-visible {
   transform: translateY(-3px);
   outline: none;
 }
@@ -298,25 +390,6 @@ h1 {
   color: var(--muted);
 }
 
-.content-section {
-  padding: clamp(120px, 14vw, 190px) clamp(36px, 6vw, 92px);
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1fr);
-  gap: clamp(56px, 8vw, 120px);
-  border-top: 1px solid var(--line);
-}
-
-h2 {
-  margin: 0;
-  font-family: var(--display);
-  font-size: clamp(48px, 6vw, 86px);
-  font-weight: 400;
-  line-height: 1.08;
-}
-
 .about-copy {
   max-width: 720px;
 }
@@ -355,10 +428,6 @@ h2 {
   font-weight: 500;
 }
 
-.works-section {
-  border-top: 1px solid var(--line);
-}
-
 .section-head {
   max-width: 760px;
 }
@@ -377,7 +446,7 @@ h2 {
 }
 
 .work-card {
-  min-height: 520px;
+  min-height: 480px;
   display: flex;
   flex-direction: column;
   padding: 22px;
@@ -412,6 +481,10 @@ h2 {
 .work-card.ink .work-meta,
 .work-card.ink p {
   color: color-mix(in srgb, var(--paper) 70%, transparent);
+}
+
+.work-card.ink button {
+  border-color: var(--paper);
 }
 
 .work-image {
@@ -449,26 +522,8 @@ h2 {
   color: var(--muted);
 }
 
-.work-card a {
+.work-card button {
   margin-top: auto;
-  font-family: var(--mono);
-  font-size: 12px;
-}
-
-.profile-band {
-  width: 100%;
-  max-width: none;
-  padding: clamp(110px, 13vw, 170px) max(36px, calc((100vw - 1280px) / 2 + 92px));
-  display: grid;
-  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1fr);
-  gap: clamp(48px, 7vw, 110px);
-  background: var(--ink);
-  color: var(--paper);
-}
-
-.profile-title .kicker,
-.profile-columns li {
-  color: color-mix(in srgb, var(--paper) 68%, transparent);
 }
 
 .profile-columns {
@@ -500,14 +555,6 @@ h2 {
 .profile-columns li {
   padding: 12px 0;
   border-top: 1px solid color-mix(in srgb, var(--paper) 14%, transparent);
-}
-
-.contact-section {
-  padding: clamp(110px, 14vw, 180px) clamp(36px, 6vw, 92px) 90px;
-}
-
-.contact-section h2 {
-  max-width: 760px;
 }
 
 .contact-grid {
@@ -551,10 +598,34 @@ h2 {
   overflow-wrap: anywhere;
 }
 
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @keyframes float-dot {
   50% {
     transform: translateY(-9px);
     opacity: 0.42;
+  }
+}
+
+@media (max-width: 1080px) {
+  .page-home,
+  .page-split,
+  .page-profile {
+    grid-template-columns: 1fr;
+  }
+
+  .page-works,
+  .page-contact {
+    justify-content: flex-start;
   }
 }
 
@@ -578,7 +649,14 @@ h2 {
     font-size: 22px;
   }
 
-  .menu-toggle {
+  .mobile-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .menu-toggle,
+  .lang-toggle {
     min-height: 42px;
     display: inline-flex;
     align-items: center;
@@ -587,6 +665,10 @@ h2 {
     padding: 8px 13px;
     font-family: var(--mono);
     font-size: 12px;
+  }
+
+  .lang-toggle {
+    background: var(--accent);
   }
 
   .nav-list {
@@ -603,13 +685,13 @@ h2 {
     display: grid;
   }
 
+  .rail-lang,
   .rail-note {
     display: none;
   }
 
-  .hero-section {
+  .page {
     min-height: auto;
-    grid-template-columns: 1fr;
     padding-top: 144px;
   }
 
@@ -623,11 +705,6 @@ h2 {
     box-shadow: 12px 12px 0 var(--ink);
   }
 
-  .about-grid,
-  .profile-band {
-    grid-template-columns: 1fr;
-  }
-
   .work-grid,
   .contact-grid {
     grid-template-columns: 1fr;
@@ -639,9 +716,8 @@ h2 {
     font-size: 15px;
   }
 
-  .hero-section,
-  .content-section,
-  .contact-section {
+  .page,
+  .page-profile {
     padding-left: 22px;
     padding-right: 22px;
   }
@@ -670,12 +746,7 @@ h2 {
   }
 
   .work-card {
-    min-height: 470px;
-  }
-
-  .profile-band {
-    padding-left: 22px;
-    padding-right: 22px;
+    min-height: 450px;
   }
 }
 
