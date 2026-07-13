@@ -110,7 +110,7 @@ a {
   margin-top: 84px;
 }
 
-.nav-list button {
+.nav-list a {
   display: grid;
   gap: 2px;
   width: 100%;
@@ -120,24 +120,25 @@ a {
   background: transparent;
   color: var(--muted);
   text-align: left;
+  text-decoration: none;
   transition: color 180ms ease, transform 180ms ease, border-color 180ms ease;
 }
 
-.nav-list button span {
+.nav-list a span {
   font-family: var(--display);
   font-size: 21px;
   line-height: 1.1;
 }
 
-.nav-list button small {
+.nav-list a small {
   font-family: var(--mono);
   font-size: 10px;
   text-transform: uppercase;
 }
 
-.nav-list button:hover,
-.nav-list button:focus-visible,
-.nav-list button.active {
+.nav-list a:hover,
+.nav-list a:focus-visible,
+.nav-list a.active {
   color: var(--ink);
   border-color: var(--ink);
   outline: none;
@@ -277,8 +278,7 @@ h2 {
   flex-wrap: wrap;
 }
 
-.hero-actions button,
-.work-card button {
+.route-button {
   min-height: 44px;
   display: inline-flex;
   align-items: center;
@@ -289,18 +289,17 @@ h2 {
   color: var(--paper);
   font-family: var(--mono);
   font-size: 12px;
+  text-decoration: none;
   transition: transform 180ms ease, background 180ms ease, color 180ms ease;
 }
 
-.hero-actions button.ghost {
+.route-button.ghost {
   background: transparent;
   color: var(--ink);
 }
 
-.hero-actions button:hover,
-.hero-actions button:focus-visible,
-.work-card button:hover,
-.work-card button:focus-visible {
+.route-button:hover,
+.route-button:focus-visible {
   transform: translateY(-3px);
   outline: none;
 }
@@ -483,7 +482,7 @@ h2 {
   color: color-mix(in srgb, var(--paper) 70%, transparent);
 }
 
-.work-card.ink button {
+.work-card.ink .route-button {
   border-color: var(--paper);
 }
 
@@ -522,7 +521,7 @@ h2 {
   color: var(--muted);
 }
 
-.work-card button {
+.work-card .route-button {
   margin-top: auto;
 }
 
