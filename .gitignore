@@ -1,11 +1,20 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# stray conversion artifacts (junk files literally named "png", ~18MB)
+assets/works/*/png
+
+# dependencies
 node_modules/
-.next/
-.vinext/
-out/
-dist/
+.superpowers/
+_site/
+output/
 .playwright-cli/
-output/playwright/daemon/
-output/playwright/profile/
-output/playwright/temp/
-output/playwright/*.png
-npm-debug.log*
+
+# personal resume (single-page html, kept out of the website)
+resume/
+
+# vercel local env + secrets (KV tokens) — never commit
+.vercel/
+.env*.local
