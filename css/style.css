@@ -74,16 +74,6 @@ html[lang="zh"] body {
 /* 注入槽本身不占布局，让 site-name / nav 直接成为 .page 的网格项 */
 #nav-placeholder { display: contents; }
 
-/* 页脚版权：每页底部左下，安静不抢戏（JS 注入） */
-.site-footer {
-  position: absolute;
-  bottom: 28px;
-  left: 48px;
-  font-family: var(--font-body);
-  font-size: .8rem;
-  opacity: .4;
-}
-
 /* 网站名：手写体，永远链回首页 */
 .site-name {
   grid-column: 1;
@@ -644,7 +634,6 @@ body[data-theme="dreamland"] .shot img { border-color: rgba(255, 255, 255, .15);
     display: block;
     padding: 24px 24px 72px;
   }
-  .site-footer { left: 24px; bottom: 20px; }
   .shot img { height: 240px; }
   .nav {
     flex-direction: row;

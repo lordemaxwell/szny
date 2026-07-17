@@ -12,9 +12,6 @@
   "use strict";
 
   var ZH = {
-    /* footer */
-    "footer": "© 2026 SZnY. 保留所有权利。",
-
     /* home */
     "home.bubbleAria": "给我留个言",
 

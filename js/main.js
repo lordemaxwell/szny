@@ -252,17 +252,6 @@
     el.textContent = g[Math.floor(Math.random() * g.length)];
   }
 
-  /* 每页底部注入版权页脚 */
-  function addFooter() {
-    var page = document.querySelector(".page");
-    if (!page || page.querySelector(".site-footer")) return;
-    var f = document.createElement("footer");
-    f.className = "site-footer";
-    f.setAttribute("data-i18n", "footer");
-    f.textContent = "Copyright © 2026 SZnY. All Rights Reserved.";
-    page.appendChild(f);
-  }
-
   function injectNav() {
     var slot = document.getElementById("nav-placeholder");
     if (!slot) { markActive(); return; }
@@ -284,7 +273,6 @@
     injectNav();
     bindWorksHover();
     bindDegreeEasterEgg();
-    addFooter();
     setupCatDrag();
     setupNoteBubble();
     if (window.I18N) {
