@@ -3,19 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Paper updates, ideas, and reflections by SZnY.">
   <title>talks — SZnY</title>
-  <link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg">
-  <link rel="shortcut icon" href="/assets/favicon/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
   <link rel="manifest" href="/assets/favicon/site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css?v=3">
-  <script src="/js/i18n.js?v=4" defer></script>
-  <script src="/js/main.js?v=3" defer></script>
-  <script src="/js/talks.js?v=1" defer></script>
+  <link rel="stylesheet" href="/css/style.css?v=4">
+  <script src="/js/i18n.js?v=5" defer></script>
+  <script src="/js/main.js?v=4" defer></script>
+  <script src="/js/talks.js?v=3" defer></script>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
@@ -23,11 +21,11 @@
     <div id="nav-placeholder"></div>
 
     <main class="content">
-      <div class="talks-filters" role="group" aria-label="filter by product" data-i18n-attr="aria-label:talks.filterAria">
-        <button type="button" class="talks-chip" data-tag="notiee">notiee</button>
-        <button type="button" class="talks-chip" data-tag="dreamland">dreamland</button>
-        <button type="button" class="talks-chip" data-tag="artista">artista</button>
-        <button type="button" class="talks-chip" data-tag="tomanotes">tomanotes</button>
+      <p class="talks-intro" data-i18n="talks.intro">a quiet place for paper updates, stray ideas, and things i want to remember.</p>
+      <div class="talks-filters" role="group" aria-label="filter talks" data-i18n-attr="aria-label:talks.filterAria">
+        <button type="button" class="talks-chip" data-tag="papers" data-i18n="talks.papers">papers</button>
+        <button type="button" class="talks-chip" data-tag="ideas" data-i18n="talks.ideas">ideas</button>
+        <button type="button" class="talks-chip" data-tag="reflections" data-i18n="talks.reflections">reflections</button>
       </div>
       <ul class="talks-list" data-talks-list></ul>
     </main>

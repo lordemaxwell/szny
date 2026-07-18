@@ -1,26 +1,24 @@
 {
-  "name": "mypersonalwebsite",
+  "name": "szny-personal-site",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "description": "SZnY's bilingual, hand-drawn personal website.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check": "node --check js/main.js && node --check js/i18n.js && node --check js/talks.js",
+    "build": "python scripts/prepare_pages.py",
+    "test": "npm run check"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/idbetterrun/tanqinghuadot.git"
+    "url": "git+https://github.com/lordemaxwell/szny.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "SZnY",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/idbetterrun/tanqinghuadot/issues"
+    "url": "https://github.com/lordemaxwell/szny/issues"
   },
-  "homepage": "https://github.com/idbetterrun/tanqinghuadot#readme",
+  "homepage": "https://lordemaxwell.github.io/szny/",
   "dependencies": {
     "@upstash/redis": "^1.38.0"
   }

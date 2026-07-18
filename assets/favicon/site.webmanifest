@@ -1,18 +1,12 @@
 {
-  "name": "tanqinghua.",
-  "short_name": "tanqinghua",
+  "name": "SZnY",
+  "short_name": "SZnY",
   "icons": [
     {
-      "src": "/assets/favicon/web-app-manifest-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
-      "src": "/assets/favicon/web-app-manifest-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
+      "src": "/assets/favicon/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
     }
   ],
   "theme_color": "#ffffff",

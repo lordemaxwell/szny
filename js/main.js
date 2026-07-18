@@ -1,4 +1,4 @@
-/* tanqinghua. — shared behaviour
+/* SZnY — shared behaviour
    1) 注入共享左列导航
    2) 按当前文件名判 active（works / talks 子页分别强制高亮对应项）
    3) works 列表 hover → data-theme 预览代表色
@@ -34,43 +34,6 @@
       card.addEventListener("mouseleave", function () {
         document.body.dataset.theme = "";
       });
-    });
-  }
-
-  /* about 彩蛋：点笔 → 弹窗 → 选 “nope, never” 解锁 hnip 学历 */
-  function bindDegreeEasterEgg() {
-    var trigger = document.querySelector("[data-degree-trigger]");
-    var modal = document.getElementById("degree-modal");
-    if (!trigger || !modal) return;
-
-    var hidden = modal.parentNode.querySelector(".edu-hidden");
-    var revealBtn = modal.querySelector("[data-reveal]");
-    var opener = null;
-
-    function open() {
-      opener = document.activeElement;
-      modal.hidden = false;
-      if (revealBtn) revealBtn.focus();
-    }
-    function close() {
-      modal.hidden = true;
-      if (opener && opener.focus) opener.focus();
-    }
-    function reveal() {
-      if (hidden) hidden.hidden = false;
-      close();
-    }
-
-    trigger.addEventListener("click", open);
-    trigger.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
-    });
-    if (revealBtn) revealBtn.addEventListener("click", reveal);
-    modal.querySelectorAll("[data-dismiss]").forEach(function (el) {
-      el.addEventListener("click", close);
-    });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && !modal.hidden) close();
     });
   }
 
@@ -272,7 +235,6 @@
     if (window.I18N) I18N.init();
     injectNav();
     bindWorksHover();
-    bindDegreeEasterEgg();
     setupCatDrag();
     setupNoteBubble();
     if (window.I18N) {

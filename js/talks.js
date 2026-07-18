@@ -9,8 +9,16 @@
     en: { empty: "nothing here yet." },
     zh: { empty: "这里还什么都没有。" }
   };
+  var TAG_LABELS = {
+    en: { papers: "papers", ideas: "ideas", reflections: "reflections" },
+    zh: { papers: "论文动态", ideas: "想法", reflections: "感悟" }
+  };
   function lang() { return (window.I18N && window.I18N.current) || "en"; }
   function t(k) { return (STR[lang()] || STR.en)[k]; }
+  function tagLabel(tag) {
+    var labels = TAG_LABELS[lang()] || TAG_LABELS.en;
+    return labels[tag] || tag;
+  }
 
   function esc(s) {
     return String(s).replace(/[&<>"]/g, function (c) {
@@ -56,11 +64,11 @@
     }
     listEl.innerHTML = items.map(function (p) {
       var tags = (p.tags || []).map(function (tg) {
-        return '<span class="talks-tag">' + esc(tg) + "</span>";
+        return '<span class="talks-tag">' + esc(tagLabel(tg)) + "</span>";
       }).join("");
       var summary = (p.summary && (p.summary[l] || p.summary.en)) || "";
       var titleObj = p.title || {};
-      return '<li class="talks-item"><a class="talks-item-link" href="/talks/'
+      return '<li class="talks-item"><a class="talks-item-link" href="/talks/detail.html?p='
         + encodeURIComponent(p.slug) + '">'
         + '<span class="talks-item-date">' + esc(fmtDate(p.date, l)) + "</span>"
         + '<span class="talks-item-title">' + esc(titleObj[l] || titleObj.en || "") + "</span>"

@@ -22,7 +22,6 @@ PUBLISH_DIRECTORIES = (
     "js",
     "partials",
     "talks",
-    "works",
 )
 
 STATIC_ROOTS = (
@@ -33,7 +32,6 @@ STATIC_ROOTS = (
     "index.html",
     "about.html",
     "works.html",
-    "works/",
     "talks.html",
     "talks/",
     "contact.html",

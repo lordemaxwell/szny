@@ -1,5 +1,5 @@
 /* ============================================================
-   tanqinghua. — global stylesheet
+   SZnY — global stylesheet
    手绘 + 极简。手写体只贴 网站名/导航/app 名，正文 Inter。
    ============================================================ */
 
@@ -25,12 +25,6 @@
   --accent: #FFC83D;
   --transition: 0.6s cubic-bezier(.4, 0, .2, 1);
 }
-
-/* ---------- 代表色主题（data-theme） ---------- */
-body[data-theme="tomanotes"]  { --bg: #EAE7E1; --ink: #1A1A1A; }
-body[data-theme="notiee"]     { --bg: #09C576; --ink: #0A2A1B; }
-body[data-theme="artista"]    { --bg: #F5DFF3; --ink: #2A1A28; }
-body[data-theme="dreamland"]  { --bg: #121212; --ink: #F5F5F5; } /* 暗色，文字翻白 */
 
 /* ---------- Reset-ish ---------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -174,71 +168,6 @@ html[lang="zh"] body {
 .resume-title { font-size: 1.05rem; }
 .resume-org { font-size: .95rem; opacity: .55; }
 
-/* 解锁 hnip 时轻轻浮现 */
-.edu-hidden:not([hidden]) { animation: fadeUp .45s ease both; }
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* 笔（notebook 涂鸦）可点：默认整组涂鸦 pointer-events:none，这里单独打开 */
-.about-doodles .notebook {
-  pointer-events: auto;
-  cursor: pointer;
-  transition: transform .2s ease;
-}
-.about-doodles .notebook:hover,
-.about-doodles .notebook:focus-visible { transform: rotate(-2deg) scale(1.03); }
-
-/* ---------- 点笔弹窗 ---------- */
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
-.modal-backdrop { position: absolute; inset: 0; background: rgba(0, 0, 0, .25); }
-.modal-box {
-  position: relative;
-  background: var(--bg);
-  color: var(--ink);
-  border: 2px solid var(--ink);
-  border-radius: 16px;
-  padding: 32px 28px;
-  max-width: 420px;
-  width: 100%;
-  box-shadow: 6px 6px 0 rgba(0, 0, 0, .12);
-  animation: popIn .25s ease both;
-}
-.modal-q {
-  font-family: var(--font-hand);
-  font-size: 1.5rem;
-  line-height: 1.3;
-  margin: 0 0 24px;
-}
-.modal-actions { display: flex; flex-direction: column; gap: 12px; }
-.modal-btn {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  padding: 12px 16px;
-  border: 1.5px solid var(--ink);
-  border-radius: 10px;
-  background: transparent;
-  color: inherit;
-  cursor: pointer;
-  text-align: left;
-  transition: background-color .2s ease, transform .1s ease;
-}
-.modal-btn:hover { background: var(--accent); border-color: var(--accent); }
-.modal-btn:active { transform: translateY(1px); }
-@keyframes popIn {
-  from { opacity: 0; transform: scale(.96); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
 /* ============================================================
    涂鸦 & 动画
    只用 transform / opacity；循环 3–4s；尊重 reduced-motion。
@@ -253,9 +182,6 @@ html[lang="zh"] body {
   pointer-events: none;
 }
 .doodle { position: absolute; }
-
-/* dreamland 暗底：黑线涂鸦翻白 */
-body[data-theme="dreamland"] .doodle { filter: invert(1); }
 
 /* ---- home：睡觉小人（主角，放大下移）+ 飘 z ---- */
 .home-doodles {
@@ -295,6 +221,7 @@ body[data-theme="dreamland"] .doodle { filter: invert(1); }
   padding: 0;
   border: none;
   background: none;
+  text-decoration: none;
   cursor: pointer;
   z-index: 5;
   transition: transform .25s ease;
@@ -380,6 +307,12 @@ body[data-theme="dreamland"] .doodle { filter: invert(1); }
 }
 .app-card:hover .app-blurb,
 .app-card:focus-within .app-blurb { opacity: .8; }
+.app-meta {
+  font-family: var(--font-body);
+  font-size: .8rem;
+  margin-top: 12px;
+  opacity: .45;
+}
 
 /* ============================================================
    App 详情页
@@ -438,8 +371,6 @@ body[data-theme="dreamland"] .doodle { filter: invert(1); }
   border: 1px solid rgba(0, 0, 0, .1);
   cursor: zoom-in;
 }
-body[data-theme="dreamland"] .shot img { border-color: rgba(255, 255, 255, .15); }
-
 /* 左右切换箭头（仅图片溢出时由 JS 显示） */
 .gallery-arrow {
   position: absolute;
@@ -512,7 +443,7 @@ body[data-theme="dreamland"] .shot img { border-color: rgba(255, 255, 255, .15);
 }
 .detail-links a.detail-download:active { transform: translateY(1px); }
 
-/* notiee：app store / website 按钮（coming soon 占位，不可点） */
+/* app store / website 按钮（供未来项目详情页复用） */
 .store-buttons { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
 .store-btn {
   display: inline-flex;
@@ -673,6 +604,13 @@ body[data-theme="dreamland"] .shot img { border-color: rgba(255, 255, 255, .15);
 /* ============================================================
    Talks 列表 + 筛选 chip
    ============================================================ */
+.talks-intro {
+  max-width: 36rem;
+  margin: 0 0 28px;
+  line-height: 1.75;
+  opacity: .62;
+  text-wrap: pretty;
+}
 .talks-filters { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 36px; }
 .talks-chip {
   font-family: var(--font-hand);
@@ -816,8 +754,6 @@ body[data-theme="dreamland"] .shot img { border-color: rgba(255, 255, 255, .15);
   padding: 1px 5px;
   border-radius: 5px;
 }
-body[data-theme="dreamland"] .talks-body code { background: rgba(255,255,255,.12); }
-
 /* 详情涂鸦:袋子(摇摆) + 三颗星(逐帧转,Task 8/9) */
 .talks-detail-doodles .bag {
   top: 0; right: 0; width: 180px;

@@ -3,18 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SZnY's bilingual personal site for education, projects, and thoughts.">
   <title>SZnY</title>
-  <link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg">
-  <link rel="shortcut icon" href="/assets/favicon/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
   <link rel="manifest" href="/assets/favicon/site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css?v=3">
-  <script src="/js/i18n.js?v=4" defer></script>
-  <script src="/js/main.js?v=3" defer></script>
+  <link rel="stylesheet" href="/css/style.css?v=4">
+  <script src="/js/i18n.js?v=5" defer></script>
+  <script src="/js/main.js?v=4" defer></script>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
@@ -25,15 +23,12 @@
       <!-- home：焦点是涂鸦，留白是对的，别填。 -->
     </main>
 
-    <!-- 聊天气泡：随机打招呼 + 点开 Tally 私密留言 -->
-    <button class="note-bubble" type="button"
-            data-tally-open="rjq96p" data-tally-layout="modal" data-tally-width="500"
-            data-tally-hide-title="1" data-tally-overlay="1"
-            data-tally-emoji-text="👋" data-tally-emoji-animation="wave"
+    <!-- 聊天气泡：随机打招呼，进入 SZnY 自己的联系页 -->
+    <a class="note-bubble" href="/contact.html"
             aria-label="leave me a note" data-i18n-attr="aria-label:home.bubbleAria">
       <img class="note-bubble-img" src="/assets/doodles/home-bubble.png" alt="">
       <span class="note-bubble-text" aria-hidden="true"></span>
-    </button>
+    </a>
 
     <div class="doodles home-doodles" aria-hidden="true">
       <img class="doodle z" src="/assets/doodles/home-z.png" alt="">
@@ -42,7 +37,5 @@
       <img class="doodle person" src="/assets/doodles/home-person.png" alt="a little person sleeping">
     </div>
   </div>
-
-  <script async src="https://tally.so/widgets/embed.js"></script>
 </body>
 </html>
