@@ -15,38 +15,9 @@
     /* home */
     "home.bubbleAria": "联系我",
 
-    /* about 独白 */
-    "about.l1": "高中的时候是理科生，后来误入教育学。",
-    "about.l2": "没什么兴趣爱好，喜欢睡觉。",
-    "about.l3": "好像总是莫名其妙地作出了错误的选择。",
-    "about.l4": "想学很多东西，但很难坚持下去。",
-    "about.l5": "如果时光能倒退，能重来，我一定要好好做选择，好好学习。",
-
-    /* about 履历 */
+    /* 固定界面标签 */
     "resume.eduHead": "education 教育经历",
     "resume.internHead": "internship 实习经历",
-    "resume.degree1": "教育学学士",
-    "resume.school1": "西南大学",
-    "resume.degree2": "教育学硕士",
-    "resume.school2": "院校待定",
-    "resume.role": "暂无",
-    "resume.internNote": "以后要努力找一下。",
-
-    /* works */
-    "works.huebitBlurb": "一个蒸馏导师学术风格的小型网页 AI 实验",
-    "works.huebitMeta": "2026 年 4 月 · 网页 AI",
-
-    /* contact */
-    "contact.title": "打个招呼",
-    "contact.intro": "邮件是找我最快的方式——或者在网上各个角落也能找到我。",
-
-    /* talks */
-    "talks.intro": "这里用来放一些论文动态，也记录偶尔冒出来的想法和感悟。",
-    "talks.filterAria": "筛选 talks",
-    "talks.papers": "论文动态",
-    "talks.ideas": "想法",
-    "talks.reflections": "感悟",
-    "talks.likeAria": "点个赞",
 
     /* contact 致谢 */
     "credits.head": "致谢",

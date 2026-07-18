@@ -12,23 +12,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css?v=4">
   <script src="/js/i18n.js?v=5" defer></script>
+  <script src="/js/content.js?v=1" defer></script>
   <script src="/js/main.js?v=4" defer></script>
-  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
   <div class="page">
     <div id="nav-placeholder"></div>
 
     <main class="content">
-      <h1 class="contact-title" data-i18n="contact.title">say hi.</h1>
-      <p class="contact-intro" data-i18n="contact.intro">mail's the fastest way to reach me — or find me scattered around the internet.</p>
+      <p class="content-error" data-content-error hidden></p>
+      <h1 class="contact-title" data-contact-title></h1>
+      <p class="contact-intro" data-contact-intro></p>
 
-      <a class="contact-email" href="mailto:2955648038@qq.com">2955648038@qq.com</a>
+      <a class="contact-email" data-contact-email></a>
 
-      <div class="social-row">
-        <a class="social-chip" href="https://www.instagram.com/luxurmaybe/" target="_blank" rel="noopener noreferrer">instagram</a>
-        <a class="social-chip" href="https://github.com/lordemaxwell" target="_blank" rel="noopener noreferrer">github</a>
-      </div>
+      <div class="social-row" data-contact-socials></div>
 
       <section class="credits">
         <h2 class="credits-head" data-i18n="credits.head">credits</h2>

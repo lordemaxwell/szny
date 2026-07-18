@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "SZnY's bilingual, hand-drawn personal website.",
   "scripts": {
-    "check": "node --check js/main.js && node --check js/i18n.js && node --check js/talks.js",
-    "build": "python scripts/prepare_pages.py",
+    "check": "node --check js/main.js && node --check js/i18n.js && node --check js/content.js && node --check js/talks.js",
+    "build": "python scripts/prepare_pages.py --base /szny",
+    "build:local": "python scripts/prepare_pages.py --base / --output output/local-site",
     "test": "npm run check"
   },
   "repository": {
@@ -18,8 +19,5 @@
   "bugs": {
     "url": "https://github.com/lordemaxwell/szny/issues"
   },
-  "homepage": "https://lordemaxwell.github.io/szny/",
-  "dependencies": {
-    "@upstash/redis": "^1.38.0"
-  }
+  "homepage": "https://lordemaxwell.github.io/szny/"
 }

@@ -1,5 +1,5 @@
-/* talks. — 列表 + 详情 + 点赞 + 星星彩蛋
-   纯静态:posts.json 当清单,正文 .zh.md / .en.md 运行时 fetch 渲染。
+/* talks. — 列表 + 详情 + 星星彩蛋
+   构建脚本从 content/talks/*.md 生成 posts.json 与双语正文。
    依赖 window.I18N(语言)与 window.marked(详情页 markdown)。 */
 (function () {
   "use strict";
@@ -9,15 +9,16 @@
     en: { empty: "nothing here yet." },
     zh: { empty: "这里还什么都没有。" }
   };
-  var TAG_LABELS = {
-    en: { papers: "papers", ideas: "ideas", reflections: "reflections" },
-    zh: { papers: "论文动态", ideas: "想法", reflections: "感悟" }
-  };
+  var talkConfig = { intro: {}, tags: {} };
   function lang() { return (window.I18N && window.I18N.current) || "en"; }
   function t(k) { return (STR[lang()] || STR.en)[k]; }
+  function localized(value) {
+    if (window.SiteContent) return window.SiteContent.localized(value, lang());
+    if (typeof value === "string") return value;
+    return (value && (value[lang()] || value.zh || value.en)) || "";
+  }
   function tagLabel(tag) {
-    var labels = TAG_LABELS[lang()] || TAG_LABELS.en;
-    return labels[tag] || tag;
+    return localized(talkConfig.tags && talkConfig.tags[tag]) || tag;
   }
 
   function esc(s) {
@@ -78,65 +79,50 @@
     }).join("");
   }
 
-  function bindChips(listEl) {
-    document.querySelectorAll(".talks-chip").forEach(function (chip) {
+  function renderTalkControls(listEl) {
+    var intro = document.querySelector("[data-talks-intro]");
+    var filters = document.querySelector("[data-talks-filters]");
+    if (intro) intro.textContent = localized(talkConfig.intro);
+    if (!filters) return;
+    filters.setAttribute("aria-label", lang() === "zh" ? "筛选 talks" : "filter talks");
+    filters.textContent = "";
+    Object.keys(talkConfig.tags || {}).forEach(function (tag) {
+      var chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "talks-chip";
+      chip.setAttribute("data-tag", tag);
+      chip.textContent = tagLabel(tag);
+      chip.classList.toggle("active", tag === listState.filter);
+      chip.setAttribute("aria-pressed", tag === listState.filter ? "true" : "false");
       chip.addEventListener("click", function () {
-        var tag = chip.getAttribute("data-tag");
         listState.filter = (listState.filter === tag) ? null : tag;
-        document.querySelectorAll(".talks-chip").forEach(function (c) {
-          c.classList.toggle("active", c.getAttribute("data-tag") === listState.filter);
-        });
+        renderTalkControls(listEl);
         renderList(listEl);
       });
+      filters.appendChild(chip);
     });
   }
 
   function initList(listEl) {
-    document.addEventListener("langchange", function () { renderList(listEl); });
-    fetchPosts().then(function (posts) {
-      listState.posts = posts.slice().sort(byDateDesc);
+    var configPromise = window.SiteContent
+      ? window.SiteContent.load().then(function (site) { return site.talks || {}; })
+      : Promise.resolve(talkConfig);
+    Promise.all([fetchPosts(), configPromise]).then(function (result) {
+      listState.posts = result[0].slice().sort(byDateDesc);
+      talkConfig = result[1];
+      renderTalkControls(listEl);
       renderList(listEl);
-      bindChips(listEl);
+      document.addEventListener("langchange", function () {
+        renderTalkControls(listEl);
+        renderList(listEl);
+      });
     }).catch(function (err) {
       console.error("[talks] failed to load posts:", err);
       listEl.innerHTML = '<li class="talks-empty">' + esc(t("empty")) + "</li>";
     });
   }
 
-  /* ---------- 详情页(Task 4 填充) ---------- */
-  function setupLike(slug, root) {
-    var box = root.querySelector("[data-talks-like]");
-    if (!box) return;
-    var btn = box.querySelector(".like-btn");
-    var countEl = box.querySelector("[data-talks-likecount]");
-    if (!btn || !countEl) return;
-    var likedKey = "liked:" + slug;
-    var liked = false;
-    try { liked = localStorage.getItem(likedKey) === "1"; } catch (_) {}
-    if (liked) btn.classList.add("liked");
-
-    var posted = false;
-    fetch("/api/likes?slug=" + encodeURIComponent(slug))
-      .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error("likes " + r.status)); })
-      .then(function (d) { if (!posted && typeof d.count === "number") countEl.textContent = d.count; })
-      .catch(function () { if (!posted) countEl.textContent = "0"; });
-
-    btn.addEventListener("click", function () {
-      if (liked) return;
-      liked = true;
-      posted = true;
-      btn.classList.add("liked");
-      try { localStorage.setItem(likedKey, "1"); } catch (_) {}
-      fetch("/api/likes", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug: slug })
-      })
-        .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error("likes " + r.status)); })
-        .then(function (d) { if (typeof d.count === "number") countEl.textContent = d.count; })
-        .catch(function () {});
-    });
-  }
+  /* ---------- 详情页 ---------- */
   function setupStars(scope) {
     (scope || document).querySelectorAll(".talks-detail-doodles .star").forEach(function (star) {
       var dragging = false, grabX = 0, grabY = 0;
@@ -219,7 +205,6 @@
       }
       renderHead(post, root);
       loadBody(post, root);
-      setupLike(post.slug, root);
       setupStars(document);
       document.addEventListener("langchange", function () {
         renderHead(post, root);

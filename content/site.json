@@ -1,0 +1,73 @@
+{
+  "about": {
+    "bio": {
+      "zh": [
+        "高中的时候是理科生，后来误入教育学。",
+        "没什么兴趣爱好，喜欢睡觉。",
+        "好像总是莫名其妙地作出了错误的选择。",
+        "想学很多东西，但很难坚持下去。",
+        "如果时光能倒退，能重来，我一定要好好做选择，好好学习。"
+      ],
+      "en": [
+        "i was a science student in high school and somehow ended up studying education",
+        "i don't really have many hobbies. i like sleeping",
+        "somehow, i always seem to make the wrong choices",
+        "there are so many things i want to learn, but it's hard to keep going",
+        "if i could turn back time and start again, i'd choose more carefully and study much harder"
+      ]
+    },
+    "education": [
+      {
+        "year": "26",
+        "degree": { "zh": "教育学学士", "en": "bachelor's in education" },
+        "school": { "zh": "西南大学", "en": "southwest university" }
+      },
+      {
+        "year": "29",
+        "degree": { "zh": "教育学硕士", "en": "master's in education" },
+        "school": { "zh": "院校待定", "en": "school to be decided" }
+      }
+    ],
+    "internship": [
+      {
+        "year": "—",
+        "role": { "zh": "暂无", "en": "none yet" },
+        "organization": { "zh": "以后要努力找一下。", "en": "i should probably start looking." }
+      }
+    ]
+  },
+  "works": [
+    {
+      "title": "huebit",
+      "url": "https://huebit.onrender.com",
+      "description": {
+        "zh": "一个蒸馏导师学术风格的小型网页 AI 实验",
+        "en": "a small web ai experiment that distills a mentor's academic style"
+      },
+      "meta": { "zh": "2026 年 4 月 · 网页 AI", "en": "april 2026 · web ai" }
+    }
+  ],
+  "talks": {
+    "intro": {
+      "zh": "这里用来放一些论文动态，也记录偶尔冒出来的想法和感悟。",
+      "en": "a quiet place for paper updates, stray ideas, and things i want to remember."
+    },
+    "tags": {
+      "papers": { "zh": "论文动态", "en": "papers" },
+      "ideas": { "zh": "想法", "en": "ideas" },
+      "reflections": { "zh": "感悟", "en": "reflections" }
+    }
+  },
+  "contact": {
+    "title": { "zh": "打个招呼", "en": "say hi." },
+    "intro": {
+      "zh": "邮件是找我最快的方式——或者在网上各个角落也能找到我。",
+      "en": "mail's the fastest way to reach me — or find me scattered around the internet."
+    },
+    "email": "2955648038@qq.com",
+    "socials": [
+      { "label": "instagram", "url": "https://www.instagram.com/luxurmaybe/" },
+      { "label": "github", "url": "https://github.com/lordemaxwell" }
+    ]
+  }
+}

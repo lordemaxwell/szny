@@ -12,21 +12,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css?v=4">
   <script src="/js/i18n.js?v=5" defer></script>
+  <script src="/js/content.js?v=1" defer></script>
   <script src="/js/main.js?v=4" defer></script>
-  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
   <div class="page">
     <div id="nav-placeholder"></div>
 
     <main class="content">
-      <div class="works-grid">
-        <div class="app-card">
-          <a class="app-title" href="https://huebit.onrender.com" target="_blank" rel="noopener noreferrer">huebit</a>
-          <p class="app-blurb" data-i18n="works.huebitBlurb">a small web ai experiment that distills a mentor's academic style</p>
-          <p class="app-meta" data-i18n="works.huebitMeta">april 2026 · web ai</p>
-        </div>
-      </div>
+      <p class="content-error" data-content-error hidden></p>
+      <div class="works-grid" data-works-list></div>
     </main>
 
     <div class="doodles works-doodles" aria-hidden="true">

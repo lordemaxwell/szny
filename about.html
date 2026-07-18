@@ -12,51 +12,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css?v=4">
   <script src="/js/i18n.js?v=5" defer></script>
+  <script src="/js/content.js?v=1" defer></script>
   <script src="/js/main.js?v=4" defer></script>
-  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
   <div class="page">
     <div id="nav-placeholder"></div>
 
     <main class="content">
-      <div class="about-copy">
-        <p data-i18n="about.l1">i was a science student in high school and somehow ended up studying education</p>
-        <p data-i18n="about.l2">i don't really have many hobbies. i like sleeping</p>
-        <p data-i18n="about.l3">somehow, i always seem to make the wrong choices</p>
-        <p data-i18n="about.l4">there are so many things i want to learn, but it's hard to keep going</p>
-        <p data-i18n="about.l5">if i could turn back time and start again, i'd choose more carefully and study much harder</p>
-      </div>
+      <p class="content-error" data-content-error hidden></p>
+      <div class="about-copy" data-about-copy></div>
 
       <section class="resume">
         <h2 class="resume-head" data-i18n="resume.eduHead">education</h2>
-        <ul class="resume-list">
-          <li>
-            <span class="resume-year">26</span>
-            <span class="resume-body">
-              <span class="resume-title" data-i18n="resume.degree1">bachelor's in education</span>
-              <span class="resume-org" data-i18n="resume.school1">southwest university</span>
-            </span>
-          </li>
-          <li>
-            <span class="resume-year">29</span>
-            <span class="resume-body">
-              <span class="resume-title" data-i18n="resume.degree2">master's in education</span>
-              <span class="resume-org" data-i18n="resume.school2">school to be decided</span>
-            </span>
-          </li>
-        </ul>
+        <ul class="resume-list" data-about-education></ul>
 
         <h2 class="resume-head" data-i18n="resume.internHead">internship</h2>
-        <ul class="resume-list">
-          <li>
-            <span class="resume-year">—</span>
-            <span class="resume-body">
-              <span class="resume-title" data-i18n="resume.role">none yet</span>
-              <span class="resume-org" data-i18n="resume.internNote">i should probably start looking.</span>
-            </span>
-          </li>
-        </ul>
+        <ul class="resume-list" data-about-internship></ul>
       </section>
     </main>
 
