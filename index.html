@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/css/style.css?v=4">
   <script src="/js/i18n.js?v=5" defer></script>
   <script src="/js/main.js?v=4" defer></script>
+  <script src="https://tally.so/widgets/embed.js" async></script>
 </head>
 <body>
   <div class="page">
@@ -22,8 +23,10 @@
       <!-- home：焦点是涂鸦，留白是对的，别填。 -->
     </main>
 
-    <!-- 聊天气泡：随机打招呼，进入 SZnY 的 Tally 留言表单 -->
+    <!-- 聊天气泡：随机打招呼，在当前页面打开 SZnY 的 Tally 留言表单 -->
     <a class="note-bubble" href="https://tally.so/r/zx9EpZ"
+            data-tally-open="zx9EpZ" data-tally-layout="modal"
+            data-tally-width="700" data-tally-overlay="1"
             aria-label="leave me a note" data-i18n-attr="aria-label:home.bubbleAria">
       <img class="note-bubble-img" src="/assets/doodles/home-bubble.png" alt="">
       <span class="note-bubble-text" aria-hidden="true"></span>
